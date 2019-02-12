@@ -3,7 +3,7 @@
 ## warning
 unregistered VCS root detected 
   the directory  C：\Uers  but is not registered in the settings
-  add root  configure ignore 
+  add root  configure ignore  
   
   当我们在IDEA中导入一个Git项目或者初始化一个Git项目的时候，往往会出现“Unregistered VCS root detected. The directory…is under Git, but is not registered in the Settings”的警告 如果您不是使用 File | Settings | Version Control 不使用AS自带的版本控制时可以忽略
 ------------------
