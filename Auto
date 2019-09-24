@@ -5,8 +5,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 
-/*public class CombatStats {
-   enum CombatStatsMode{ f, z , y }
+/*public class CombatStats {                         //战斗状态统计
+   enum CombatStatsMode{ f, z , y ，单怪模式，群怪模式 }
    CombatStatsMode mode;
 }*/
 
@@ -20,12 +20,19 @@ import java.text.SimpleDateFormat;
    OrientationValue  o ;
 }*/
 public class Auto{
-             public static final  int PAUSE_TIME = 250;  //暂停时间
-             public static final  int PRESS_ONCE_TIME = 250;  //单次点击时间
-             public final int publicCdTime = 800;   //公共CD
+             public static final  int PAUSE_TIME = 500;  //暂停时间
+             public static final  int PRESS_ONCE_TIME = 500;  //单次点击时间
+             public static final int PUBLIC_CD_TIME = 800;   //公共CD
+             //判断标准是 根据怪物级别对比、是否为精英、判断下自身的增益效果
+             final int EASY = 100;          
+             final int NORMAL = 101;
+             final int SINGLE_HARD = 102;
+             final int MULTIPLE_HARD = 103;
 	
+
             int clocker;   //计时器
             int HP;  //定义HP值  判断停止还是继续
+            int level;
 
             int energyVariationValue;  //能量变量值
             int energyValueMax = 100;   //能量值最大值
@@ -33,9 +40,13 @@ public class Auto{
             int energyValueReply = 10;  //能量恢复速度  value/s
             int energyValueGain = 0;  //能量增益
             int energyValueRestrain = 0;  //能量抑制
-
+		
+            int monsterLevel;//怪物血量等级
+            int monsterHP; //怪物血量 目前单个模式
+            //int monsterJInengh ;  //怪物技能
+            
             //int[ ] position = new int[ ];  //储存位置坐标
-            // int speedValue =  lucheng  / zuobiaoa dao b de shu zhi juliu  // 需要计算 不同状态下 数值不同(抽取计算方法)
+            //int speedValue =  lucheng  / zuobiaoa dao b de shu zhi juliu  // 需要计算 不同状态下 数值不同(抽取计算方法)
 	
     public static void main(String[] args) throws AWTException {
         
@@ -54,7 +65,18 @@ public class Auto{
          System.out.println(event);
          robot.keyRelease(event);
          System.out.println(event);
+	//判断增益Buff
+        do{ 
+             if(  正常状态下 和 死亡复活后){
+                     //祝福30MIN 
+	     //荆棘术10MIN 	
 
+	}else{
+ 	     //祝福30MIN 
+	     //荆棘术10MIN 	
+	}
+         
+         }
          while(true){      
                 if(event == 56){
                 int scale = 1;
@@ -103,62 +125,61 @@ public class Auto{
 	           robot.delay(800);
 	       }
 
-	     for(int i = 0; i < 3; i++){
+	      for(int i = 0; i < 3; i++){
 	          //int keyCode = 0;
 	          int  count = 0;
 	          while(true){
-			keyCode = KeyEvent.VK_2;
-                        robot.keyPress(keyCode);
+		        keyCode = KeyEvent.VK_2;
+                                        robot.keyPress(keyCode);
 		        robot.keyRelease(keyCode);
-			robot.delay(800);
-			count++;
-			if(count == 2){
-				break;
-			}else{
-                                continue;
-			}
-		} 
-		keyCode = KeyEvent.VK_9;
-                robot.keyPress(keyCode);
+		        robot.delay(800);
+		        count++;
+		             if(count == 2){
+			   break;
+		              }else{
+                                                   continue;
+		              }
+	             } 
+	        keyCode = KeyEvent.VK_9;
+                        robot.keyPress(keyCode);
+	        robot.keyRelease(keyCode);
+	         robot.delay(800);
+	         count = 0;
+	         while(true){
+		keyCode = KeyEvent.VK_2;
+                                robot.keyPress(keyCode);
 		robot.keyRelease(keyCode);
 		robot.delay(800);
-		count = 0;
-		while(true){
-			keyCode = KeyEvent.VK_2;
-                        robot.keyPress(keyCode);
-		        robot.keyRelease(keyCode);
-			robot.delay(800);
-			count++;
-			if(count == 3){
-				break;
-			}else{
-                                continue;
-			}
+		count++;
+		if(count == 3){
+			break;
+		}else{
+                                  	continue;
 		}
+	           }
 		
-		keyCode = KeyEvent.VK_3;
-                robot.keyPress(keyCode);
-		robot.keyRelease(keyCode);
-		robot.delay(800);
+	          keyCode = KeyEvent.VK_3;
+                          robot.keyPress(keyCode);
+	          robot.keyRelease(keyCode);
+	          robot.delay(800);
 		
 	     }
              default:	
-	     break;
-	
-         }
+	     break;	
+            }
 	  fKey++;
 
-	  }else{
+           }else{
                 event = 0;
-		break;
-	
+	break;	
         }
-           if(fKey > 1){
-		break;
-	   }
-      }
 
-       
+
+        if(fKey > 1){
+	break;
+        }
+     }
+    
         System.out.println("=======Game Over========");
     }
 }
