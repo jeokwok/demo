@@ -34,6 +34,13 @@ public class Auto{
             int HP;  //定义HP值  判断停止还是继续
             int level;
 
+            int magicValue;  //魔法变量值
+            int magicValueMax;   //魔法值最大值 无上限
+            int magicValueMin = 0;   //魔法值最小值
+            int magicValueReply = 10;  //魔法恢复速度  value/s
+            int magicValueGain = 0;  //魔法增益
+            int magicValueRestrain = 0;  //魔法抑制
+	    
             int energyVariationValue;  //能量变量值
             int energyValueMax = 100;   //能量值最大值
             int energyValueMin = 0;   //能量值最小值
@@ -48,6 +55,8 @@ public class Auto{
             //int[ ] position = new int[ ];  //储存位置坐标
             //int speedValue =  lucheng  / zuobiaoa dao b de shu zhi juliu  // 需要计算 不同状态下 数值不同(抽取计算方法)
 	
+	    // 增加启动的接口和录制动作的功能
+	 
     public static void main(String[] args) throws AWTException {
         
          System.out.println("=======Auto Run========");
@@ -67,9 +76,10 @@ public class Auto{
          System.out.println(event);
 	//判断增益Buff
         do{ 
-             if(  正常状态下 和 死亡复活后){
-                     //祝福30MIN 
-	     //荆棘术10MIN 	
+             if(  正常状态下 和 死亡复活后  2级判断 是否有魔法){
+             //祝福30MIN 
+	     //荆棘术10MIN 
+	     //清晰预兆
 
 	}else{
  	     //祝福30MIN 
