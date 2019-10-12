@@ -19,6 +19,12 @@ import java.text.SimpleDateFormat;
    enum OrientationValue{ east, west,north ,south }
    OrientationValue  o ;
 }*/
+
+/*public class attitude {                          //姿态
+   enum attitudeValue{ bear, Cheetah ,aquatic ,travel }
+   attitudeValue  o ;
+}*/
+
 public class Auto{
              public static final  int PAUSE_TIME = 500;  //暂停时间
              public static final  int PRESS_ONCE_TIME = 500;  //单次点击时间
