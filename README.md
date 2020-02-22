@@ -34,3 +34,6 @@ System.out.print(name);//输出name
 } 
 
 视频网址 [http://m.tlyy.tv/movie.html]
+
+自制插件向导
+https://www.cnblogs.com/yuyuyu/p/3203230.html?utm_source=tuicool
