@@ -1,0 +1,297 @@
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Random;
+import java.util.Scanner;
+import java.io.FileNotFoundException;   
+import java.io.PrintStream;   
+import java.awt.event.*;
+import javax.swing.*;
+
+
+class H2{
+       private static String str;
+       private static int count = 0;
+       private int number = 0;
+
+      public int setNumber(int num){
+	this.number = num;
+	return num;
+
+    }
+      
+//保存点击事件
+private static void addActionListener(JButton saveButton) {
+        // 为按钮绑定监听器
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 对话框
+                JOptionPane.showMessageDialog(null, "保存成功！");
+            }
+        });
+    }
+//Olay搜索快捷点击事件
+private static void addActionListener1(JButton autoButton) {
+        // 为按钮绑定监听器
+        autoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 对话框
+               A a = new A(KeyEvent.VK_SLASH);   
+		a.pressKey();
+
+		a.pressKey1(KeyboadValue.o);   //括号里填写按键值   
+		a.pressKey1(KeyboadValue.l);    
+		a.pressKey1(KeyboadValue.a);
+		a.pressKey1(KeyboadValue.y);
+		a.pressKey1(KeyboadValue.space);
+		a.pressKey1(KeyboadValue.enter);
+            }
+        });
+    }
+
+
+//自动粘贴回复点击事件
+private static void addActionListener2(JButton copyButton) {
+        
+        // 为按钮绑定监听器
+        copyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 对话框
+               A a = new A(KeyEvent.VK_SLASH);   
+		//a.pressKey();
+	int counterCopy = 0;
+	while(true){
+	      a.pressKey2(KeyboadValue.control,KeyboadValue.v);                                   
+                       a.pressKey1(KeyboadValue.enter);
+                      a.pressKey1(KeyboadValue.down);
+	      if( counterCopy  == 37)
+	          {break;}
+   	       counterCopy++;
+                      }
+	  count++;
+	System.out.println(count);	        	
+            }
+	
+        });
+    }
+
+
+
+ private static JButton buildJButton(String name, int x, int y, int width, int height) {
+        JButton button = new JButton(name);
+        button.setBounds(x, y, width, height);
+        return button;
+    }
+ 
+         
+          public static void main(String[] args) throws AWTException{
+	int number = 0;
+	 Frame f = new Frame("测试窗口");
+	// f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     	 //创建一个Panel 容器
+     	 Panel p=new Panel();
+	//JLabel  lbl    =new JLabel("我是标签");
+  					//向panel中添加两个组件                
+       	// p.add(new TextField(20));		//20列  
+                // p.add(new Button("Olay")); 		 //按钮上的文字
+	// p.add(new Button("防晒"));
+	// p.add(new Button("身体乳"));
+	// p.add(new Button("邮费"));
+	// p.add(new Label("我是标签"));
+	
+	 JTextField textIn=new JTextField(20);
+	
+	 JTextField num = new JTextField(10);
+
+
+       	 JButton saveButton = buildJButton("保存",50,50,50,50);
+	 JButton autoButton = buildJButton("输入Olay搜索",50,50,50,50);
+
+	
+	JButton copyButton = buildJButton("自动粘贴回复",50,50,50,50);
+
+	
+                addActionListener(saveButton);
+	addActionListener1(autoButton);
+	addActionListener2(copyButton);
+	//new Action(copyButton,6);
+
+	
+	p.add(new Label("您输入数据:"));
+	p.add(textIn);
+	p.add(new Label("输入循环的次数:"));
+	p.add(num);
+	 p.add(saveButton);
+	 p.add(autoButton);
+	//number =Integer.parseInt(num .getText());
+	p.add(copyButton);
+
+       	 f.add(p);                                            	 //将panel放在frame
+   	 f.setBounds(30, 30, 250, 200);
+     	 f.setVisible(true);                                	 //默认frame隐藏
+  	f.addWindowListener(new WindowAdapter() {    
+    		public void windowClosing(WindowEvent e) {        
+        		    System.exit(0);//退出系统 
+   		 }
+	});
+	
+	/*button.addActionListener(new ActionListener() {		
+	//接口不能直接实例化所以直接在后面加大括号调用方法            	
+		@Override	
+		public void actionPerformed(ActionEvent arg0)	{	
+		switch(ActionEvent){
+			case 0:
+			//按键值对应的点击时间监听
+			System.out.println("1111 ");
+			break;
+			case 1:
+			System.out.println("2222 ");
+			break;
+			default:
+			break;
+
+		}	
+		
+	         }
+	});  
+	  	A a = new A(KeyEvent.VK_SLASH);   
+		a.pressKey();
+
+		a.pressKey1(KeyboadValue.o);   //括号里填写按键值   
+		a.pressKey1(KeyboadValue.l);    
+		a.pressKey1(KeyboadValue.a);
+		a.pressKey1(KeyboadValue.y);
+	        */
+          }
+	
+           //退出时候的选择
+    private void doExit() {
+        int n = JOptionPane.showConfirmDialog(null, "你确定要退出吗?", "消息提示",JOptionPane.YES_NO_OPTION);
+        //取消选择是 -1 ,确定是0 ,取消是1
+        System.out.println(n);
+        if(n==0) { //如果选择了确定
+            System.exit(0);//那么退出
+        }
+    }
+
+
+}
+
+
+class Action implements ActionListener{
+	JButton button;
+	int count;
+	Action(JButton button,int count){
+		this.button = button;
+		this.count = count;
+	}
+
+	 @Override
+           	 public void actionPerformed(ActionEvent e) {
+          		A a = new A();   
+		int counterCopy = 0;
+		while(true){
+	                a.pressKey2(KeyboadValue.control,KeyboadValue.v);                                   
+                   	a.pressKey1(KeyboadValue.enter);
+                	a.pressKey1(KeyboadValue.down);
+	   	   if( counterCopy  == count)
+		          {break;}
+   	 	      counterCopy++;
+                  	}
+			     	
+          	 }
+	//pram 1传入按键对象  pram 2 传入按键数值 pram3 传入数值
+	public void actionListener (){  
+
+		
+		
+ 	 }
+
+
+ }
+
+class A{     
+         private Builder builder = null ;       
+         private Robot robot;
+         private  int keyValue;
+          
+         A(){}
+         A ( int keyValue){
+	if(robot == null){
+		try{
+		robot =  new Robot();}
+		catch(AWTException e){
+
+		}		
+                }
+	this.keyValue = keyValue;
+  	}
+          /* input valus to press */
+         void pressKey(){
+        	 robot.keyPress(keyValue);
+         	 robot.keyRelease(keyValue);
+                 robot.delay(3000);
+         }
+         void pressKey1(int value){
+	  robot.keyPress(value);
+         	  robot.keyRelease(value);
+                  robot.delay(500);
+          }
+
+        void pressKey2(int value,int value1){
+	  robot.keyPress(value);
+    	  robot.keyPress(value1);
+         	  robot.keyRelease(value);
+	  robot.keyRelease(value1);
+                  robot.delay(500);
+          }
+        public Builder getInnerInstance() {
+        if(builder == null)
+            builder = new Builder();
+        return builder;
+        }
+  
+       class Builder{
+	 public Builder(){}
+
+	 void pressKey1(int  keyValue){
+                        robot.keyPress(keyValue);
+         	        robot.keyRelease(keyValue);
+                        robot.delay(1000);
+                 }
+        }
+}
+
+//custom 自定义按键数据
+class KeyboadValue{
+	static int a = KeyEvent.VK_A;
+	static int b = KeyEvent.VK_B;
+	static int c = KeyEvent.VK_C;
+	static int d = KeyEvent.VK_D;
+	static int e = KeyEvent.VK_E;
+	static int f = KeyEvent.VK_F;
+	static int g = KeyEvent.VK_G;
+	
+
+	static int o = KeyEvent.VK_O;
+	static int l = KeyEvent.VK_L;
+	static int y = KeyEvent.VK_Y;
+	static int v = KeyEvent.VK_V;
+	static int q = KeyEvent.VK_Q;
+	static int i = KeyEvent.VK_I;
+	static int n = KeyEvent.VK_N;
+	static int s1 = KeyEvent.VK_4;
+	static int enter = KeyEvent.VK_ENTER;
+	static int space = KeyEvent.VK_SPACE;
+	static int x = KeyEvent.VK_SLASH;
+	static int control = KeyEvent.VK_CONTROL; 
+	static int down = KeyEvent.VK_DOWN; 
+}
+
+
+//系统通知   排列顺序  搜索聊天窗口数据（非固定ID文字信息判断）-> DATABASE ->DATAOUT
+
+
